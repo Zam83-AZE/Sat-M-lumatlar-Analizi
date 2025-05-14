@@ -1,75 +1,116 @@
 # Satış Məlumatları Analizi
 
-Bu layihə satış məlumatlarını analiz edərək və vizuallaşdıraraq biznes qərarları üçün faydalı insaytlar əldə etməyə imkan verir. Mən bu kodu endirim effektivliyi, müştəri davranışı və satış tendensiyalarını başa düşmək üçün yaratdım.
+## Təsvir
 
-## Bu layihə nə edir?
+Bu repo satış məlumatlarından biznes insaytları çıxarmaq və onları vizual olaraq təqdim etmək üçün yaradılmışdır. Google Colab-da yazılan və buraya əlavə edilən analiz, şirkətin satış strategiyasını təkmilləşdirmək üçün dəyərli məlumatlar təqdim edir.
 
-- Satış məlumatlarını oxuyur və təhlil edir
-- Endirimlərin satışlara təsirini ölçür
-- Həftənin və günün hansı vaxtlarında satışların daha yaxşı getdiyini göstərir
-- Ən çox gəlir gətirən məhsul kateqoriyalarını müəyyənləşdirir
-- VIP müştərilərin satışlardakı rolunu araşdırır
-- Məhsul qaytarılmasının əsas səbəblərini aşkar edir
-- Bütün bu analizləri gözəl qrafiklər və diaqramlarla göstərir
+## Fayllar
 
-## Necə istifadə edə bilərəm?
+- `satislar_data.ipynb` - Google Colab-da yazıb download etdiyim və bu repo-ya əlavə etdiyim əsas analiz faylı
+- `satislar_data.csv` - Analizdə istifadə olunan məlumat faylı (nümunə məlumatlar)
 
-1. Bu reponu öz kompüterinizə yükləyin
-2. `satislar_data.csv` faylını `data` qovluğuna yerləşdirin (və ya öz CSV faylınızı eyni sütun adları ilə istifadə edin)
-3. Python mühitinizdə lazımi paketləri yükləyin:
+## Analiz olunan əsas sahələr
+
+1. **Endirim effektivliyi analizi**
+   - Müxtəlif endirim səviyyələrinin satış həcminə təsiri
+   - Kateqoriyalara görə optimal endirim dərəcələri
+
+2. **Zaman analizi**
+   - Həftənin günlərinə görə satış performansı
+   - Gün saatlarına görə satış tendensiyaları
+   - Aylıq və mövsümi dəyişikliklər
+
+3. **Məhsul analizi**
+   - Ən çox satılan və ən gəlirli məhsullar
+   - Məhsul kateqoriyalarının müqayisəsi
+   - Qiymət və satış həcmi arasındakı əlaqə
+
+4. **Müştəri analizi**
+   - VIP və adi müştəri davranışının müqayisəsi
+   - Şəhərlərə görə müştəri paylanması
+   - Ödəniş üsulları üstünlükləri
+
+5. **Qaytarma analizi**
+   - Qaytarma səbəbləri və tendensiyaları
+   - Yüksək qaytarma nisbətinə malik məhsullar
+
+## İstifadə qaydası
+
+### Google Colab-da
+
+1. `satislar_data.ipynb` faylını Google Drive-a yükləyin
+2. Google Drive-da faylı sağ kliklə açın və "Google Colab ilə aç" seçin
+3. Məlumat faylını (`satislar_data.csv`) yükləmək üçün notebook-dakı hücrələrdən istifadə edin:
+   ```python
+   from google.colab import files
+   uploaded = files.upload()  # CSV faylını yükləyin
    ```
+4. Bütün kod hücrələrini ardıcıllıqla işə salın
+
+### Lokal istifadə üçün
+
+1. Bu repo-nu klonlayın:
+   ```bash
+   git clone https://github.com/istifadeci_adi/satis-analizi.git
+   cd satis-analizi
+   ```
+
+2. Lazımi Python paketlərini yükləyin:
+   ```bash
    pip install pandas numpy matplotlib seaborn
    ```
-4. Analiz skriptini çalışdırın:
+
+3. Jupyter Notebook və ya JupyterLab-da faylı açın:
+   ```bash
+   jupyter notebook satislar_data.ipynb
    ```
-   python analyze_sales.py
-   ```
-   
-Budur! İndi siz `results` qovluğunda bütün analiz hesabatlarını və qrafikləri görəcəksiniz.
 
-## CSV faylımın necə görünməlidir?
+## Əsas analiz nəticələri
 
-CSV faylınızda bu sütunlar olmalıdır:
-```
-sale_id, date, customer_id, customer_name, customer_city, store_id, store_name, 
-store_city, product_id, product_name, product_category, quantity, base_price, 
-discount_pct, final_price, total_amount, payment_method, promotion_code, 
-is_vip_customer, weekday, month, year, hour, is_returned, return_date, return_reason
-```
+- Endirimli məhsullar arasında 15% endirim ən yüksək satış həcmini yaradır
+- Şənbə günləri və 12:00-14:00, 17:00-19:00 saatları ən yüksək satış zamanlarıdır
+- Elektronika kateqoriyası həm ən çox satılan, həm də ən çox gəlir gətirən kateqoriyadır
+- VIP müştərilərin orta çeki adi müştərilərdən 2.5 dəfə daha yüksəkdir
+- Məhsulların gözləntiləri qarşılamaması ən çox rast gəlinən qaytarma səbəbidir
 
-## Əldə etdiyim nəticələr nə olacaq?
+## Vizuallaşdırma nümunələri
 
-Bu layihə ilə siz aşağıdakı suallara cavab tapa biləcəksiniz:
+Notebook faylı aşağıdakı vizuallaşdırmaları özündə əks etdirir:
 
-- Hansı endirim səviyyəsi ən çox satış gətirir? (15% endirimlər daha effektivdir?)
-- Həftənin hansı günü və günün hansı saatlarında satışlar pik səviyyəyə çatır?
-- Hansı məhsul kateqoriyaları ən çox satılır və gəlir gətirir?
-- VIP müştərilər biznes üçün nə qədər dəyərlidir?
-- Müştərilər niyə məhsulları qaytarırlar və bunu necə azalda bilərik?
+1. Bar qrafikləri - endirim effektivliyi, top məhsullar
+2. Xətt qrafikləri - zaman seriyaları, satış tendensiyaları
+3. Dairə qrafikləri - məhsul kateqoriyaları, ödəniş metodları
+4. İstilik xəritələri - həftənin günü və saat analizi
+5. Səpələnmə qrafikləri - qiymət və satış əlaqəsi
+6. Qutu qrafikləri - qiymət paylanması
 
-## Çıxış qrafiklərinə nümunələr
+## Texniki detallar
 
-- Endirim səviyyələrinin satışlara təsiri
-- Həftəlik və saatlıq satış tendensiyaları
-- Məhsul kateqoriyalarının payı
-- Ödəniş metodlarının populyarlığı
-- Məhsul qiyməti və satış miqdarı arasındakı əlaqə
+### İstifadə olunan texnologiyalar
 
-## Layihə üzərində necə işlədim
+- **Python 3.x**
+- **Pandas**: Məlumatların işlənməsi və analizi
+- **NumPy**: Riyazi əməliyyatlar
+- **Matplotlib**: Əsas vizuallaşdırma
+- **Seaborn**: Əlavə statistik vizuallaşdırmalar
 
-Mən Python dilində pandas, numpy, matplotlib və seaborn kitabxanalarından istifadə edərək bu proyekti hazırladım. İlk öncə satış məlumatlarını analiz etdim, sonra bu məlumatları vizual olaraq təqdim etmək üçün müxtəlif qrafik növlərindən istifadə etdim.
+### Qarşılaşdığım çətinliklər və həllər
 
-Başlanğıcda iki əsas problem ilə qarşılaşdım: qrafiklərin üst-üstə düşməsi və annotasiyaların (işarələmələrin) qarışması. Bu problemləri yaradıcı şəkildə həll etdim və nəticədə təmiz və anlaşılan vizuallaşdırmalar əldə etdim.
+- **Problem**: Qrafiklər üzərində etiketlərin üst-üstə düşməsi
+- **Həll**: Leqenda əlavə edərək və təkmilləşdirilmiş yerləşdirmə funksiyalarından istifadə edərək problemi aradan qaldırdım
 
-## Əlavə işlər
+- **Problem**: Bar və xətt qrafiklərinin kombinasiyasında qarışıqlıq
+- **Həll**: İkili y-oxu sistemi və dəqiq x-pozisiyaları təyin edərək vizual problemləri həll etdim
 
-Bu layihəni genişləndirmək üçün aşağıdakı istiqamətlərdə işlər görməyi planlaşdırıram:
+## Gələcək inkişaf planları
 
-- Interaktiv vizuallaşdırmalar üçün Plotly və Dash əlavə etmək
-- Satış proqnozları üçün sadə ML modeli qurmaq
-- Həftəlik avtomatik hesabat göndərmək üçün script yazmaq
+- Daha interaktiv vizuallaşdırmalar üçün Plotly əlavə etmək
+- Satış tendensiyalarını proqnozlaşdırmaq üçün sadə ML modeli yaratmaq
+- İstifadəçi dostlu dashboard yaratmaq
 
-Əgər bu layihə xoşunuza gəlirsə və ya suallarınız varsa, əlaqə saxlamaqdan çəkinməyin!
+## Müəllif
+
+Bu analiz mən Zamir Camalov tərəfindən hazırlanmışdır. Suallar və təkliflər üçün əlaqə: jamalov.zamir@gmail.com
 
 ## Lisenziya
 
