@@ -20,7 +20,7 @@ Bu repo satış məlumatlarından biznes insaytları çıxarmaq və onları vizu
 ## Vizuallaşdırma Nümunələri
 
 ### 1. Endirim Səviyyələrinin Təsiri
-![Endirim Analizi](images/discount_bar.png)
+![Endirim Analizi](images/Capture.png)
 *Qrafik 15%-lik endirimin ən yüksək satış həcmini yaratdığını göstərir.*
 
 ### 2. Aylıq Satış Trendi
